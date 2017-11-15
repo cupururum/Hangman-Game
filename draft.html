@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <html>
+      <head>
+        <title> </title>
+      </head>
+      <body>
+        <div>
+        </div>
+
+        <script>
+             function findLettersInString(string) {
+               document.onkeypress = function(e) {
+
+                 var userGuess = e.key;
+
+                 for ( i = 0 ;i < string.length; i++) {
+                   if (string.includes(userGuess)) {
+                       console.log(string.indexOf(userGuess));
+                   }
+
+               }
+             }
+
+           }
+
+             findLettersInString('harry');
+
+
+
+
+
+
+
+
+        </script>
+
+      </body>
+  </html>
