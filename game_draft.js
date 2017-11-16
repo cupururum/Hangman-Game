@@ -10,6 +10,8 @@ var rigthGuess = 0;
 var wrongGuess = 0;
 var numberOfTries = 8;
 var lettersWordLeft;
+var loses = 0;
+var wins = 0;
 var pickUpWordSlots = [];
 var alreadyGuessArray = [];
 var chooseAlph = document.getElementById('chooseAlph');
@@ -19,17 +21,7 @@ words = words.map(word => word.toUpperCase());
 alphabet = alphabet.map(letter => letter.toUpperCase());
 
 
-function game() {
-
-    pickUpWord = words[Math.floor(Math.random() * words.length)]; // computer choose a word
-    for ( j = 0; j < pickUpWord.length; j++) {
-       pickUpWordSlots.push('_ ');
-    }
-    currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');// publish underscore word into the doc
-        // after I published underscore word I start guessing
-    lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
-
-
+function game(word) {
       document.onkeypress = function(event) {
         userGuess = event.key;
         userGuess = userGuess.toUpperCase();
@@ -53,7 +45,15 @@ function game() {
                for ( i = 0; i < indicesOfLetter.length; i++) {
                  pickUpWordSlots[indicesOfLetter[i]] = userGuess;
                  currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');
+
                }//closing for loop after I changed all letters in the word
+               lettersWordLeft--;
+               console.log('letter left ' + lettersWordLeft );
+               if (lettersWordLeft == 0){
+                 wins++;
+                 document.getElementById('wins').textContent = 'wins: ' + loses;
+                 startGame();
+               }
              }//closing the while loop for the all letters in the word
              rigthGuess++; // for the rigthGuess I need to start a counter
              console.log('number of rigth guesses ' + rigthGuess);
@@ -62,7 +62,12 @@ function game() {
              console.log('number of wrong guesses ' + wrongGuess);
              numberOfTries-- // when i pick the wrongGuess I loose my numberOfTries
              console.log('number of tries left ' + numberOfTries);
-           }//closing looking for all letters in the word otherwise it is the wrong guess
+             if (numberOfTries == 0) {
+               loses++;
+               document.getElementById('loses').textContent = 'Loses: ' + loses;
+               startGame();
+              }
+             }//closing looking for all letters in the word otherwise it is the wrong guess
          } else {
            //ignore
          } //closing you cannot use the same letter twice!!
@@ -71,9 +76,22 @@ function game() {
           chooseAlph.textContent = 'You need to choose a letter from alphabet: ' + alphabet.join(" ");
         } //closing if letter is not from the alphabet you will see this
       }//closing the document.onkeypress evnt function for the game
+
   }//closing the game function or actually play game
 
 
-document.onkeypress = function(e) {
-  game();
+
+function startGame() {
+  pickUpWord = words[Math.floor(Math.random() * words.length)]; // computer choose a word
+  for ( j = 0; j < pickUpWord.length; j++) {
+     pickUpWordSlots.push('_ ');
+  }
+  currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');// publish underscore word into the doc
+      // after I published underscore word I start guessing
+  lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
+  game(pickUpWord);
 }
+
+document.onkeypress = function(e) {
+    startGame();
+ }

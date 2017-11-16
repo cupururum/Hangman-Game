@@ -19,8 +19,7 @@ words = words.map(word => word.toUpperCase());
 alphabet = alphabet.map(letter => letter.toUpperCase());
 
 
-function game() {
-
+  function game() {
     pickUpWord = words[Math.floor(Math.random() * words.length)]; // computer choose a word
     for ( j = 0; j < pickUpWord.length; j++) {
        pickUpWordSlots.push('_ ');
@@ -29,7 +28,7 @@ function game() {
         // after I published underscore word I start guessing
     lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
 
-
+    while ( numberOfTries != 0 || lettersWordLeft !=0 ) {
       document.onkeypress = function(event) {
         userGuess = event.key;
         userGuess = userGuess.toUpperCase();
@@ -56,12 +55,12 @@ function game() {
                }//closing for loop after I changed all letters in the word
              }//closing the while loop for the all letters in the word
              rigthGuess++; // for the rigthGuess I need to start a counter
-             console.log('number of rigth guesses ' + rigthGuess);
+             console.log('number of rigth guesses' + rigthGuess);
            } else {
              wrongGuess++; //wrongGuess counter
-             console.log('number of wrong guesses ' + wrongGuess);
+             console.log('number of wrong guesses' + wrongGuess);
              numberOfTries-- // when i pick the wrongGuess I loose my numberOfTries
-             console.log('number of tries left ' + numberOfTries);
+             console.log('number of tries left' + numberOfTries);
            }//closing looking for all letters in the word otherwise it is the wrong guess
          } else {
            //ignore
@@ -71,6 +70,7 @@ function game() {
           chooseAlph.textContent = 'You need to choose a letter from alphabet: ' + alphabet.join(" ");
         } //closing if letter is not from the alphabet you will see this
       }//closing the document.onkeypress evnt function for the game
+    }//closing the while loop
   }//closing the game function or actually play game
 
 

@@ -8,22 +8,65 @@
         </div>
 
         <script>
-             function findLettersInString(string) {
-               document.onkeypress = function(e) {
 
-                 var userGuess = e.key;
 
-                 for ( i = 0 ;i < string.length; i++) {
-                   if (string.includes(userGuess)) {
-                       console.log(string.indexOf(userGuess));
-                   }
+         var indices = [];
+         var string = 'harry potter';
+        //  var array = [];
 
-               }
-             }
+         
 
-           }
 
-             findLettersInString('harry');
+        //  for ( i = 0; i < string.length; i++) {
+        //    array.push(string[i]);
+        //    console.log(array);
+        //    var newArray = [];
+        //    for ( j = 0; j < array.length; j++) {
+        //       newArray.push('_');
+        //    }
+        //  }
+        //  var spaceId = string.indexOf(' ');
+        //  newArray[spaceId] = " ";
+        //  console.log(newArray);
+        //  for ( i = 0; i < string.length; i++) {
+        //    if (string.indexOf(' ') > -1){
+        //      var spaceId = string.indexOf(' ');
+        //      newArray[spaceId] = " ";
+         //
+        //    } else { //ignore!
+        //    }
+        //  }
+        //  console.log(newArray);
+         var element = 'r';
+         var idx = string.indexOf(element);
+         while (idx != -1) {
+           indices.push(idx);
+           idx = string.indexOf(element, idx + 1);
+         }
+        console.log(indices);
+        //  for( k = 0; k < indices.length; k++){
+         //
+        //  }
+ // [0, 2, 4]
+
+
+          //    function findLettersInString(string) {
+          //      document.onkeypress = function(e) {
+           //
+          //        var userGuess = e.key;
+           //
+          //        for ( i = 0 ;i < string.length; i++) {
+          //          if (string.includes(userGuess)) {
+          //
+          //          }
+           //
+          //      }
+          //
+          //    }
+           //
+          //  }
+           //
+          //    findLettersInString('harry');
 
 
 
