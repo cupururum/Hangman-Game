@@ -111,10 +111,11 @@ function startGame() {
     var whiteSpace = pickUpWord.indexOf(' ');
     console.log('position of the white space in the word ' + (whiteSpace + 1))
   }
-  pickUpWordSlots[whiteSpace] = "*I hate this f*&^%$ whitespace*"
+  //pickUpWordSlots[whiteSpace] = "*I hate this f*&^%$ whitespace*"
+  var pickUpWordSlotsString = pickUpWordSlots.join(' ');
+  var publishString = pickUpWordSlotsString.substr(0,whiteSpace) + " " + pickUpWordSlotsString.substr(whiteSpace+1);
 
-
-  currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');// publish underscore word into the doc
+  currentWordP.textContent = "Current word: " + publishString;// publish underscore word into the doc
       // after I published underscore word I start guessing
   lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
 

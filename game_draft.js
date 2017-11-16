@@ -96,25 +96,24 @@ function game(word, slots) {
 
 
 function startGame() {
-  var words = ["harry potter", /*"muglle",*/ "albus dumbledore"];
+  var words = ["harry potter", "muglle", "albus dumbledore"];
   var pickUpWord;
   var pickUpWordSlots = [];
   words = words.map(word => word.toUpperCase());
   pickUpWord = words[Math.floor(Math.random() * words.length)]; // computer choose a word
   for ( j = 0; j < pickUpWord.length; j++) {
-  //   if (pickUpWord.charAt(j)==" ") {
-  //   pickUpWordSlots = pickUpWordSlots + " ";
-  // } else {
-  //     pickUpWordSlots = pickUpWordSlots + "_ ";
-  // }
-  pickUpWordSlots.push('_ ');
-    var whiteSpace = pickUpWord.indexOf(' ');
-    console.log('position of the white space in the word ' + (whiteSpace + 1))
+    if (pickUpWord[j] == " ") {
+      pickUpWordSlots.push("\xa0");
+    } else {
+      pickUpWordSlots.push('_ ');
+    }
   }
-  pickUpWordSlots[whiteSpace] = "*I hate this f*&^%$ whitespace*"
+  console.log('pickUpWordSlots ' + pickUpWordSlots);
+  var whiteSpace = pickUpWord.indexOf(' ');
+  console.log('position of the white space in the word ' + (whiteSpace + 1))
+  //pickUpWordSlots[whiteSpace] = "*I hate this f*&^%$ whitespace*"
 
-
-  currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');// publish underscore word into the doc
+  currentWordP.innerText = "Current word: " + pickUpWordSlots.join(" ");// publish underscore word into the doc
       // after I published underscore word I start guessing
   lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
 
