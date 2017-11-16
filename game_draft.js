@@ -52,7 +52,7 @@ function game(word, slots) {
                // for each index I change the underscore for the letter
                for ( i = 0; i < indicesOfLetter.length; i++) {
                  slots[indicesOfLetter[i]] = userGuess;
-                 currentWordP.textContent = "Current word: " + slots.join('');
+                 currentWordP.textContent = "Current word: " + slots.join(' ');
 
                }//closing for loop after I changed all letters in the word
                lettersWordLeft--;
@@ -102,13 +102,17 @@ function startGame() {
   words = words.map(word => word.toUpperCase());
   pickUpWord = words[Math.floor(Math.random() * words.length)]; // computer choose a word
   for ( j = 0; j < pickUpWord.length; j++) {
-    pickUpWordSlots.push('_ ');
-    var whiteSpace = pickUpWord.search(/\s/);
-    console.log('position of the white space in the word ' + whiteSpace)
+  //   if (pickUpWord.charAt(j)==" ") {
+  //   pickUpWordSlots = pickUpWordSlots + " ";
+  // } else {
+  //     pickUpWordSlots = pickUpWordSlots + "_ ";
+  // }
+  pickUpWordSlots.push('_ ');
+    var whiteSpace = pickUpWord.indexOf(' ');
+    console.log('position of the white space in the word ' + (whiteSpace + 1))
   }
-    if (whiteSpace > 0) {
-    pickUpWordSlots[whiteSpace] = ' ';
-    }
+  pickUpWordSlots[whiteSpace] = "*I hate this f*&^%$ whitespace*"
+
 
   currentWordP.textContent = "Current word: " + pickUpWordSlots.join(' ');// publish underscore word into the doc
       // after I published underscore word I start guessing
