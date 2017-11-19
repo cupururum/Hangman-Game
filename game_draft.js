@@ -61,11 +61,13 @@ function game(word, slots) {
                  wins++;
                  document.getElementById('wins').textContent = 'Wins: ' + wins;
                  pressAnyKeyToBeginP.textContent = "Press any key to start game again";
+                 chooseFromAlphabetP.textContent = "";
                  pressAnyKeyToBegin();
                }
              }//closing the while loop for the all letters in the word
              rigthGuess++; // for the rigthGuess I need to start a counter
              console.log('number of rigth guesses ' + rigthGuess);
+
            } else {
              wrongGuess++; //wrongGuess counter
              console.log('number of wrong guesses ' + wrongGuess);
@@ -77,6 +79,7 @@ function game(word, slots) {
                document.getElementById('loses').textContent = 'Loses: ' + loses;
                currentWordP.textContent = "Current word: " + word;
                pressAnyKeyToBeginP.textContent = "Press any key to start game again";
+               chooseFromAlphabetP.textContent = "";
                pressAnyKeyToBegin();
               }
              }//closing looking for all letters in the word otherwise it is the wrong guess
@@ -96,7 +99,7 @@ function game(word, slots) {
 
 
 function startGame() {
-  var words = ["harry potter", "muglle", "albus dumbledore"];
+  var words = ["harry potter", "muggle", "albus dumbledore"];
   var pickUpWord;
   var pickUpWordSlots = [];
   words = words.map(word => word.toUpperCase());
@@ -118,6 +121,7 @@ function startGame() {
   lettersWordLeft = pickUpWord.replace(/\s/g, "").length;
 
   //choose from alphabet
+
   pressAnyKeyToBeginP.textContent = "Guess a word";
   guessesRamainedP.textContent = 'Number of guesses remained: 8'
   alreadyGuessedP.textContent = 'Letters already guessed: '
